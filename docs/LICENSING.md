@@ -1,3 +1,6 @@
-# Licensing decision
+# Licensing
 
-MIT is recommended for the original application code if the author confirms ownership and permission to license all contributed code. A license has not yet been selected; no open-source license grant is implied by this preparation copy. Approve a LICENSE before publication. Keep third-party notices with binary distributions; their licenses are independent of the application license.
+The application source is licensed under the [MIT License](../LICENSE).
+Copyright (c) 2026 Amita Shree S.
+
+Third-party dependencies and bundled runtimes retain their own licenses. Keep their required notices with future binary distributions; the application MIT license does not replace those obligations.

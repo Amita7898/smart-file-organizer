@@ -93,4 +93,4 @@ tests/                     Disposable native and GUI regression tests
 docs/                      Provenance, demo instructions and screenshots
 ```
 
-See [demo instructions](docs/DEMO.md), [provenance and changes](docs/PROVENANCE.md) and [licensing decision](docs/LICENSING.md). The original college project is preserved separately; this repository begins a clean source-first history.
+See [demo instructions](docs/DEMO.md), [provenance and changes](docs/PROVENANCE.md) and [MIT License](LICENSE). The original college project is preserved separately; this repository begins a clean source-first history.
