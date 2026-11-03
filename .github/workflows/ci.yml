@@ -1,21 +1,35 @@
 name: Build and test
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
 permissions:
   contents: read
 jobs:
   native-and-gui:
+    name: Native safety and bundle / ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.14'
+      - name: Install Linux GUI and compiler dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-tk xvfb xauth build-essential
       - run: python -m pip install -r requirements-build.txt
       - run: python scripts/build_native.py
-      - run: python -m unittest discover -s tests -v
-      - if: runner.os == 'Linux'
+      - name: Run all 25 tests with virtual desktop
+        if: runner.os == 'Linux'
         run: xvfb-run -a env GUI_TESTS=1 python -m unittest discover -s tests -v
-      - run: python -m PyInstaller packaging/fileorganiser.spec
+      - name: Run native safety tests on macOS
+        if: runner.os == 'macOS'
+        run: python -m unittest discover -s tests -v
+      - name: Verify PyInstaller build (not a binary release)
+        run: python -m PyInstaller packaging/fileorganiser.spec

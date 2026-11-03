@@ -2,7 +2,9 @@
 
 A desktop file organizer built with Python, Tkinter and a native C library. Sort a selected file, watch folders for incoming files, and undo successful moves without silently replacing an existing file.
 
-![Smart File Organizer main window](docs/screenshots/main-window.png)
+[Build and test](https://github.com/amita7898/smart-file-organizer/actions/workflows/ci.yml) · [Install from source](#install-and-run-from-source) · [Safety](#collision-and-undo-safety) · [MIT License](LICENSE)
+
+![Smart File Organizer main window](docs/screenshots/main-window.jpg)
 
 ## Features
 
@@ -14,7 +16,7 @@ A desktop file organizer built with Python, Tkinter and a native C library. Sort
 
 ## Requirements
 
-Python 3.14 with Tkinter/Tk 8.6, a C compiler (Clang on macOS; GCC or Clang on Linux), and pip. The tested desktop is Apple Silicon macOS with Python 3.14.0. Linux has a build/test workflow but has not been locally GUI-verified. Windows is not supported by this safety revision; the old Windows DLL is not distributed.
+Python 3.14 with Tkinter/Tk 8.6, a C compiler (Clang on macOS; GCC or Clang on Linux), and pip. The tested desktop is Apple Silicon macOS with Python 3.14.0. Linux has automated build/virtual-desktop test coverage through [GitHub Actions](https://github.com/amita7898/smart-file-organizer/actions/workflows/ci.yml); manual Linux desktop use has not been locally verified. Windows is not supported by this safety revision; the old Windows DLL is not distributed.
 
 Use a Python distribution with working Tkinter. Check `python3 -m tkinter` before installation; do not try to install Tkinter with `pip install tk`. On macOS, the tested Python came from the standard python.org framework installation. A Homebrew Python installation may need its corresponding Tk package.
 
@@ -60,7 +62,11 @@ python -m unittest discover -s tests -v
 GUI_TESTS=1 python -m unittest discover -s tests -v
 ```
 
-The suite uses temporary synthetic files only. It covers collisions, undo identity checks and retries, symlinks, long paths, competing moves, Unicode names, automatic scans, and Tk manual/drop/watch controls. Headless runs skip six GUI tests. Validation on macOS: 19 core tests and six GUI tests passed.
+The suite uses temporary synthetic files only. It covers collisions, undo identity checks and retries, symlinks, long paths, competing moves, Unicode names, automatic scans, and Tk manual/drop/watch controls. Headless runs skip six GUI tests. Local validation on macOS: all **25 tests passed**, comprising 19 core tests and six GUI tests. CI runs all 25 under Xvfb on Linux; its macOS job runs the 19 native/core cases (six GUI cases intentionally unselected) and verifies the bundle build. Consult the linked workflow for actual run results.
+
+## Downloads
+
+This publication is **source-only**. No tested standalone application download is offered yet. The earlier local macOS bundle has development metadata and is not a verified distributable; CI build success alone does not make a binary release. Follow the source setup above or build locally using the instructions that follow.
 
 ## Build a desktop bundle
 

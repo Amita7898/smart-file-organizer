@@ -7,4 +7,4 @@ Create a new empty folder outside your personal files. Add a small `sample.txt`,
 3. Add the disposable folder in Auto Mode; observe category creation and skipped collisions. Stop before undoing.
 4. Capture only the app window and synthetic fixtures. Never include personal paths or file contents.
 
-`main-window.png` is a capture of the rebuilt application running on macOS, not an illustration. Automated GUI tests verify the same manual, collision and automatic workflows with generated temporary fixtures.
+`main-window.jpg` is a capture of the rebuilt application running on macOS, not an illustration. Automated GUI tests verify the same manual, collision and automatic workflows with generated temporary fixtures.

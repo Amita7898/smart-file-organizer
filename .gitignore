@@ -12,3 +12,16 @@ dist/
 *.db
 *.db-*
 .coverage
+
+# Private archives, editor settings and local scratch data
+*.zip
+*.tar.gz
+*.bundle
+*.sqlite*
+*.bak
+*.tmp
+.env
+.env.*
+backups/
+.vscode/
+.idea/
