@@ -1,0 +1,21 @@
+name: Build and test
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  native-and-gui:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - run: python -m pip install -r requirements-build.txt
+      - run: python scripts/build_native.py
+      - run: python -m unittest discover -s tests -v
+      - if: runner.os == 'Linux'
+        run: xvfb-run -a env GUI_TESTS=1 python -m unittest discover -s tests -v
+      - run: python -m PyInstaller packaging/fileorganiser.spec

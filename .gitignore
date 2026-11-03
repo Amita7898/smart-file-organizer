@@ -1,0 +1,14 @@
+.DS_Store
+*.DS_Store
+.venv/
+__pycache__/
+*.py[cod]
+build/
+dist/
+*.dylib
+*.so
+*.dll
+*.log
+*.db
+*.db-*
+.coverage

@@ -1,0 +1,2 @@
+# Optional drag-and-drop support; the GUI also runs without it.
+tkinterdnd2==0.4.3
